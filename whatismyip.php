@@ -1,8 +1,32 @@
-<!-- <pre>
-<?php print_r($_SERVER); ?>
-</pre>
-
-Your IP address is: <?php echo $_SERVER['REMOTE_ADDR']; ?> -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>What Is My IP?</title>
+    <style type="text/css">
+    body {
+    	margin: 0;
+    	padding: 0;
+      background: black;
+    }
+    #main-content {
+      margin: 30px;
+      text-align: center;
+      color: skyblue;
+    }
+    #main-content h1 {
+      font: 40px Arial, Helvetica, sans-serif;
+    }
+    #main-content p {
+      font: 24px "Times New Roman", Times, Georgia, serif;
+    }
+    #main-content p strong {
+      font-size: 70px;
+      color: white;
+    }
+  	</style>
+  </head>
+  <body>
 
 <?php
 
@@ -51,11 +75,19 @@ $remote_ip = $_SERVER['REMOTE_ADDR'];
 $forwarded_ip = forwarded_ip();
   
 ?>
+    <div id="main-content">
+      <h1>What Is My IP?</h1>
+      
+      <p>The request came from:<br />
+        <strong><?php echo $remote_ip; ?></strong>
+      </p>
+      
+      <?php if($forwarded_ip != '') { ?>
+      <p>The request was forwarded for:<br />
+        <strong><?php echo $forwarded_ip; ?></strong>
+      </p>
+      <?php } ?>
 
-Remote IP Address: <?php echo $remote_ip; ?><br />
-<br />
-
-<?php if($forwarded_ip != '') { ?>
-  Forwarded For: <?php echo $forwarded_ip; ?><br />
-  <br />
-<?php } ?>
+    </div>
+  </body>
+</html>
